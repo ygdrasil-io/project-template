@@ -65,3 +65,11 @@ android {
         targetCompatibility = JavaVersion.VERSION_25
     }
 }
+
+dependencies {
+    dokkaGfmPlugin("org.jetbrains.dokka:gfm-plugin:2.0.0")
+}
+
+tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
+    moduleName.set("shared")
+}
