@@ -5,7 +5,7 @@ plugins {
     id("signing")
 }
 
-group = "com.ygdrasil.shared"
+group = "io.ygdrasil.shared"
 version = "1.0.0-SNAPSHOT"
 
 publishing {

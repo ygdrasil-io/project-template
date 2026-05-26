@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.ygdrasil.shared"
+    namespace = "io.ygdrasil.shared"
 }
 
 kotlin {
