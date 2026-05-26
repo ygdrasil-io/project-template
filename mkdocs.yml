@@ -52,13 +52,10 @@ plugins:
   - i18n:
       default_language: en
       languages:
-        en:
+        - locale: en
           name: English
-          link: /
-          build: true
-        fr:
+          default: true
+        - locale: fr
           name: Français
-          link: /fr/
-          build: true
           site_name: Starter Pack KMP
           site_description: Documentation Technique pour KMP Starter Pack
