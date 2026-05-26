@@ -49,3 +49,16 @@ plugins:
   - search
   - awesome-pages:
       collapse_single_pages: true
+  - i18n:
+      default_language: en
+      languages:
+        en:
+          name: English
+          link: /
+          build: true
+        fr:
+          name: Français
+          link: /fr/
+          build: true
+          site_name: Starter Pack KMP
+          site_description: Documentation Technique pour KMP Starter Pack

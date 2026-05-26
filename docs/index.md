@@ -1,54 +1,54 @@
-# Bienvenue sur la Documentation du KMP Starter Pack
+# Welcome to the KMP Starter Pack Documentation
 
-Ce site regroupe l'ensemble des documentations techniques, des guides d'architecture et de la référence API du **Starter Pack Kotlin Multiplatform (KMP)**.
-
----
-
-## 🚀 Fonctionnalités Clés
-
-*   **Multiplateforme Complet** : Partage de code ciblant **Android**, **iOS** et **Desktop (JVM)**.
-*   **Architecture Guidée (Clean Architecture / DDD)** : Séparation stricte de la logique métier (Domaine), de l'infrastructure (Données) et de l'interface (Présentation).
-*   **Pile Technique Moderne** : **Kotlin 2.3.21**, **Gradle 9.5.0**, **AGP 9.0.0** et **Java 25**.
-*   **Intégration Continue Conditionnelle** : Un workflow CI/CD à double-vitesse (JVM Fast-Track de 10 secondes vs Deep-Testing complet avant merge sur `master`).
-*   **Moteur de Documentation API** : Génération automatisée de la documentation d'API via **Dokka v2** et rendu via **MkDocs Material**.
+This site centralizes all technical documentation, architecture guidelines, and API references for the **Kotlin Multiplatform (KMP) Starter Pack**.
 
 ---
 
-## 🧱 Organisation Architecturales du Projet
+## 🚀 Key Features
 
-Le module partagé `:shared` suit les directives fournies par le skill **Architecte Kotlin** :
-
-1.  **Couche Domaine (Domain)** :
-    *   Écrite en Kotlin pur (sans dépendance).
-    *   Contient les UseCases autonomes modélisant les cas d'utilisation métier.
-    *   Modèles de données robustes auto-validés (utilisation de `value class` inline).
-2.  **Couche Données (Data)** :
-    *   Implémentation des dépôts et communication de bas niveau (réseau via Ktor, persistance).
-    *   Gestion d'exceptions Flow transparente (garantissant que `AbortFlowException` n'est pas intercepté accidentellement).
-3.  **Couche Présentation (Presentation)** :
-    *   Interface réactive basée sur des `StateFlow` immuables.
-    *   Scopes coroutines proprement gérés et ViewModels autonomes.
+*   **Complete Multiplatform Support**: Code sharing targeting **Android**, **iOS**, and **Desktop (JVM)**.
+*   **Guided Architecture (Clean Architecture / DDD)**: Strict separation of business logic (Domain), infrastructure (Data), and user interface (Presentation).
+*   **Modern Tech Stack**: **Kotlin 2.3.21**, **Gradle 9.5.0**, **AGP 9.0.0**, and **Java 25**.
+*   **Conditional Continuous Integration**: A double-speed CI/CD workflow (10-second JVM Fast-Track vs full Deep-Testing suite before merging into `master`).
+*   **API Documentation Engine**: Automated API doc generation via **Dokka v2** and beautiful rendering through **MkDocs Material**.
 
 ---
 
-## 💻 Commandes Utiles
+## 🧱 Architectural Organization of the Project
 
-### Exécuter la suite de tests (Fast-Track JVM)
+The shared module `:shared` strictly follows the guidelines of the **Kotlin Architect** skill:
+
+1.  **Domain Layer**:
+    *   Written in pure Kotlin (zero external framework dependencies).
+    *   Contains self-contained UseCases modeling distinct business features.
+    *   Robust, self-validating data models (using inline `value class` patterns).
+2.  **Data Layer**:
+    *   Repository implementations and low-level communication (networking via Ktor, database/persistence).
+    *   Transparent Flow exception handling (ensuring `AbortFlowException` is never caught by accident).
+3.  **Presentation Layer**:
+    *   Reactive user interface driven by immutable `StateFlow` structures.
+    *   Properly managed coroutine scopes and decoupled ViewModels.
+
+---
+
+## 💻 Useful Commands
+
+### Run tests (Fast-Track JVM)
 ```bash
 ./gradlew :shared:jvmTest
 ```
 
-### Lancer tous les tests (Toutes cibles)
+### Run all tests (All Platforms)
 ```bash
 ./gradlew allTests
 ```
 
-### Générer localement la documentation de l'API (Dokka GFM)
+### Generate API documentation locally (Dokka GFM)
 ```bash
 ./gradlew :shared:dokkaGfm
 ```
 
-### Compiler localement le site MkDocs
+### Compile the MkDocs site locally
 ```bash
 mkdocs build
 ```
