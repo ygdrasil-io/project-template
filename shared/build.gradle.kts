@@ -7,11 +7,10 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
-android {
-    namespace = "io.ygdrasil.shared"
-}
-
 kotlin {
+    androidLibrary {
+        namespace = "io.ygdrasil.shared"
+    }
     sourceSets {
         commonMain.dependencies {
             implementation(compose.runtime)

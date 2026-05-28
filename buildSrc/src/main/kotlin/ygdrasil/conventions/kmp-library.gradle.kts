@@ -2,13 +2,11 @@ package ygdrasil.conventions
 
 plugins {
     id("org.jetbrains.kotlin.multiplatform")
-    id("com.android.library")
+    id("com.android.kotlin.multiplatform.library")
 }
 
 kotlin {
     jvmToolchain(25)
-    
-    androidTarget()
     
     jvm() // Cible pour Desktop (JVM)
     
@@ -16,15 +14,12 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-}
 
-android {
-    compileSdk = 35
-    defaultConfig {
+    androidLibrary {
+        compileSdk = 35
         minSdk = 24
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_25
-        targetCompatibility = JavaVersion.VERSION_25
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        }
     }
 }
