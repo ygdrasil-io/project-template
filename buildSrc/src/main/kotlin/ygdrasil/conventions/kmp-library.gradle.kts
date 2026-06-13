@@ -1,30 +1,28 @@
-@file:Suppress("UnstableApiUsage")
 package ygdrasil.conventions
-
-import com.android.build.api.variant.KotlinMultiplatformAndroidComponentsExtension
 
 plugins {
     id("org.jetbrains.kotlin.multiplatform")
-    id("com.android.kotlin.multiplatform.library")
+    id("com.android.library")
 }
 
 kotlin {
     jvmToolchain(25)
-
-    android {}
-
+    
+    androidTarget()
+    
     jvm()
 
     iosArm64()
     iosSimulatorArm64()
 }
 
-extensions.configure<KotlinMultiplatformAndroidComponentsExtension> {
-    finalizeDsl(
-        org.gradle.api.Action<com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryExtension> {
-            namespace = "io.ygdrasil.shared"
-            compileSdk = 37
-            minSdk = 24
-        }
-    )
+android {
+    compileSdk = 37
+    defaultConfig {
+        minSdk = 24
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_25
+        targetCompatibility = JavaVersion.VERSION_25
+    }
 }
