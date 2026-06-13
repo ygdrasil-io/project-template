@@ -12,14 +12,13 @@ kotlin {
     
     jvm() // Cible pour Desktop (JVM)
     
-    // Cibles iOS
-    iosX64()
+    // Cibles iOS (Compose 1.11+ ne supporte plus x86_64)
     iosArm64()
     iosSimulatorArm64()
 }
 
 android {
-    compileSdk = 35
+    compileSdk = 37
     defaultConfig {
         minSdk = 24
     }

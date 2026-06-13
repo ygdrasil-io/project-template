@@ -1,6 +1,6 @@
 # 🚀 Project Template - Kotlin Multiplatform (KMP)
 
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.3.21-purple?logo=kotlin)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.4.0-purple?logo=kotlin)](https://kotlinlang.org)
 [![Gradle](https://img.shields.io/badge/Gradle-9.5.0-blue?logo=gradle)](https://gradle.org)
 [![AGP](https://img.shields.io/badge/AGP-9.0.0-green?logo=android)](https://developer.android.com/studio/releases/gradle-plugin)
 [![Java](https://img.shields.io/badge/Java-25-red?logo=openjdk)](https://openjdk.org)
@@ -32,7 +32,7 @@
 
 ---
 
-This project is a **state-of-the-art Kotlin Multiplatform (KMP) Starter Pack** targeting **Android**, **iOS**, and **Desktop (JVM)**. It leverages the latest ecosystem technologies (Kotlin 2.3.21, Gradle 9.5.0, AGP 9.0, Java 25) and rigorously applies **Clean Architecture** and **Domain-Driven Design (DDD)** principles.
+This project is a **state-of-the-art Kotlin Multiplatform (KMP) Starter Pack** targeting **Android**, **iOS**, and **Desktop (JVM)**. It leverages the latest ecosystem technologies (Kotlin 2.4.0, Gradle 9.5.0, AGP 9.0, Java 25) and rigorously applies **Clean Architecture** and **Domain-Driven Design (DDD)** principles.
 
 ---
 
