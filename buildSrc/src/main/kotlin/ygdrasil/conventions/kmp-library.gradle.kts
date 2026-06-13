@@ -2,6 +2,7 @@
 package ygdrasil.conventions
 
 import com.android.build.api.variant.KotlinMultiplatformAndroidComponentsExtension
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     id("org.jetbrains.kotlin.multiplatform")
@@ -17,6 +18,19 @@ kotlin {
 
     iosArm64()
     iosSimulatorArm64()
+
+    targets.withType<KotlinNativeTarget>().configureEach {
+        compilations.all {
+            compileTaskProvider.configure {
+                compilerOptions {
+                    freeCompilerArgs.addAll(
+                        "-Xoverride-konan-properties=appleDeploymentTargetIos=18.5",
+                        "-Xoverride-konan-properties=appleDeploymentTargetIosSimulator=18.5"
+                    )
+                }
+            }
+        }
+    }
 }
 
 extensions.configure<KotlinMultiplatformAndroidComponentsExtension> {
