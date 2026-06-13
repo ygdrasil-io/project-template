@@ -24,8 +24,8 @@ kotlin {
             compileTaskProvider.configure {
                 compilerOptions {
                     freeCompilerArgs.addAll(
-                        "-Xoverride-konan-properties=appleDeploymentTargetIos=18.5",
-                        "-Xoverride-konan-properties=appleDeploymentTargetIosSimulator=18.5"
+                        "-Xoverride-konan-properties=minVersion.ios=18.5",
+                        "-Xoverride-konan-properties=minVersion.ios_simulator=18.5"
                     )
                 }
             }
