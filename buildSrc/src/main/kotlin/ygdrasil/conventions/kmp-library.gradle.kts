@@ -32,18 +32,25 @@ kotlin {
         }
     }
 
-    val simulatorSdk: String? = try {
-        project.providers.exec {
-            commandLine("xcrun", "--sdk", "iphonesimulator", "--show-sdk-path")
-        }.standardOutput.asText.orNull?.trim()
-    } catch (_: Exception) { null }
+    val uiUtilitiesStub = project.layout.buildDirectory.dir("konan-stubs/UIUtilities.framework").map { dir ->
+        dir.asFile.mkdirs()
+        val tbd = dir.file("UIUtilities.tbd")
+        tbd.asFile.writeText("""---
+!tapi-tbd
+tbd-version:     4
+targets:         [ arm64-ios-simulator, x86_64-ios-simulator ]
+install-name:    '/System/Library/SubFrameworks/UIUtilities.framework/UIUtilities'
+current-version: 1.0
+exports:
+  - targets:         [ arm64-ios-simulator, x86_64-ios-simulator ]
+    re-exports:      [ '/System/Library/Frameworks/UIKit.framework/UIKit' ]
+""")
+        dir.asFile.absolutePath
+    }
 
-    if (simulatorSdk != null) {
-        val subFrameworksDir = "$simulatorSdk/System/Library/SubFrameworks"
-        targets.matching { it.name == "iosSimulatorArm64" || it.name == "iosX64" }.configureEach {
-            (this as KotlinNativeTarget).binaries.all {
-                linkerOpts("-F$subFrameworksDir")
-            }
+    targets.matching { it.name == "iosSimulatorArm64" || it.name == "iosX64" }.configureEach {
+        (this as KotlinNativeTarget).binaries.all {
+            linkerOpts("-F${uiUtilitiesStub.get()}")
         }
     }
 }
