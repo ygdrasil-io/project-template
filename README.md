@@ -12,19 +12,19 @@
      ========================================== -->
 
 <!-- STATUT : EN PLANIFICATION (PLANNING) -->
-<!-- [![Projet: Planning](https://img.shields.io/badge/Statut-Planning-blue?style=for-the-badge)](https://github.com) -->
+<!-- [![Projet: Planning](https://img.shields.io/badge/Statut-Planning-blue)](https://github.com) -->
 
 <!-- STATUT : INCUBATION / EN DÉVELOPPEMENT (INCUBATING) -->
-[![Projet: Incubating](https://img.shields.io/badge/Statut-Incubating-orange?style=for-the-badge)](https://github.com)
+[![Projet: Incubating](https://img.shields.io/badge/Statut-Incubating-orange)](https://github.com)
 
 <!-- STATUT : STABLE / PRÊT PRODUCTION (STABLE) -->
-<!-- [![Projet: Stable](https://img.shields.io/badge/Statut-Stable-green?style=for-the-badge)](https://github.com) -->
+<!-- [![Projet: Stable](https://img.shields.io/badge/Statut-Stable-green)](https://github.com) -->
 
 <!-- STATUT : DEPRÉCIÉ (DEPRECATED) -->
-<!-- [![Projet: Deprecated](https://img.shields.io/badge/Statut-Deprecated-red?style=for-the-badge)](https://github.com) -->
+<!-- [![Projet: Deprecated](https://img.shields.io/badge/Statut-Deprecated-red)](https://github.com) -->
 
 <!-- STATUT : ARCHIVÉ (ARCHIVED) -->
-<!-- [![Projet: Archived](https://img.shields.io/badge/Statut-Archived-lightgrey?style=for-the-badge)](https://github.com) -->
+<!-- [![Projet: Archived](https://img.shields.io/badge/Statut-Archived-lightgrey)](https://github.com) -->
 
 ---
 
