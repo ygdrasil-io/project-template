@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: macos-14 # Utilisation de macOS 14 (Xcode 15.x) pour compatibilité K/N 2.4.0 + Compose
+    runs-on: macos-15 # Utilisation de macOS 15 pour supporter les compilations iOS natives si nécessaire
     
     steps:
       - name: Checkout Code
