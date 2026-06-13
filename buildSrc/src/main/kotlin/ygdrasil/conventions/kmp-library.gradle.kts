@@ -31,6 +31,21 @@ kotlin {
             }
         }
     }
+
+    val simulatorSdk: String? = try {
+        project.providers.exec {
+            commandLine("xcrun", "--sdk", "iphonesimulator", "--show-sdk-path")
+        }.standardOutput.asText.orNull?.trim()
+    } catch (_: Exception) { null }
+
+    if (simulatorSdk != null) {
+        val subFrameworksDir = "$simulatorSdk/System/Library/SubFrameworks"
+        targets.matching { it.name == "iosSimulatorArm64" || it.name == "iosX64" }.configureEach {
+            (this as KotlinNativeTarget).binaries.all {
+                linkerOpts("-F$subFrameworksDir")
+            }
+        }
+    }
 }
 
 extensions.configure<KotlinMultiplatformAndroidComponentsExtension> {
