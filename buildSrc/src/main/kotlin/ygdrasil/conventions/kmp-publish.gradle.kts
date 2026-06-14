@@ -8,6 +8,8 @@ plugins {
 group = "io.ygdrasil.shared"
 version = project.findProperty("releaseVersion") as? String ?: "1.0.0-SNAPSHOT"
 
+val isSnapshot = version.toString().endsWith("SNAPSHOT")
+
 publishing {
     publications.withType<MavenPublication>().configureEach {
         pom {
@@ -40,10 +42,15 @@ publishing {
 
     repositories {
         maven {
-            name = "mavenCentral"
-            val releasesRepoUrl = uri("https://central.sonatype.com/service/local/staging/deploy/maven2/")
-            val snapshotsRepoUrl = uri("https://central.sonatype.com/repository/maven-snapshots/")
-            url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
+            if (isSnapshot) {
+                logger.lifecycle("Configuring snapshot repository")
+                name = "snapshots"
+                url = uri("https://central.sonatype.com/repository/maven-snapshots/")
+            } else {
+                logger.lifecycle("Configuring release staging repository")
+                name = "mavenCentral"
+                url = uri("https://central.sonatype.com/service/local/staging/deploy/maven2/")
+            }
             credentials {
                 username = project.findProperty("mavenCentralUsername") as? String ?: System.getenv("MAVEN_CENTRAL_USERNAME") ?: ""
                 password = project.findProperty("mavenCentralPassword") as? String ?: System.getenv("MAVEN_CENTRAL_PASSWORD") ?: ""
