@@ -40,20 +40,15 @@ publishing {
         }
     }
 
-    repositories {
-        maven {
-            if (isSnapshot) {
-                logger.lifecycle("Configuring snapshot repository")
+    if (isSnapshot) {
+        repositories {
+            maven {
                 name = "snapshots"
                 url = uri("https://central.sonatype.com/repository/maven-snapshots/")
-            } else {
-                logger.lifecycle("Configuring release staging repository")
-                name = "mavenCentral"
-                url = uri("https://central.sonatype.com/service/local/staging/deploy/maven2/")
-            }
-            credentials {
-                username = project.findProperty("mavenCentralUsername") as? String ?: System.getenv("MAVEN_CENTRAL_USERNAME") ?: ""
-                password = project.findProperty("mavenCentralPassword") as? String ?: System.getenv("MAVEN_CENTRAL_PASSWORD") ?: ""
+                credentials {
+                    username = project.findProperty("mavenCentralUsername") as? String ?: System.getenv("MAVEN_CENTRAL_USERNAME") ?: ""
+                    password = project.findProperty("mavenCentralPassword") as? String ?: System.getenv("MAVEN_CENTRAL_PASSWORD") ?: ""
+                }
             }
         }
     }
