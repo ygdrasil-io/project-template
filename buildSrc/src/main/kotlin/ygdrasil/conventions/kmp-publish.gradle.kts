@@ -10,8 +10,15 @@ version = project.findProperty("releaseVersion") as? String ?: "1.0.0-SNAPSHOT"
 
 val isSnapshot = version.toString().endsWith("SNAPSHOT")
 
+val javadocJar by tasks.registering(Jar::class) {
+    archiveClassifier.set("javadoc")
+    from(provider { tasks.findByName("dokkaGfm")?.outputs?.files ?: files() })
+}
+
 publishing {
     publications.withType<MavenPublication>().configureEach {
+        artifact(javadocJar)
+
         pom {
             name.set("KMP Starter Pack Shared Library")
             description.set("Shared library logic for KMP Starter Pack")
