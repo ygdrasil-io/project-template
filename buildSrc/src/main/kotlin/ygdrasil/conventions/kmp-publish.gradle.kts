@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "io.ygdrasil.shared"
-version = "1.0.0-SNAPSHOT"
+version = project.findProperty("releaseVersion") as? String ?: "1.0.0-SNAPSHOT"
 
 publishing {
     publications.withType<MavenPublication>().configureEach {
