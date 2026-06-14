@@ -8,6 +8,8 @@ plugins {
 group = "io.ygdrasil.shared"
 version = project.findProperty("releaseVersion") as? String ?: "1.0.0-SNAPSHOT"
 
+val isSnapshot = version.toString().endsWith("SNAPSHOT")
+
 publishing {
     publications.withType<MavenPublication>().configureEach {
         pom {
@@ -34,6 +36,19 @@ publishing {
                 connection.set("scm:git:git://github.com/ygdrasil-io/project-template.git")
                 developerConnection.set("scm:git:ssh://github.com/ygdrasil-io/project-template.git")
                 url.set("https://github.com/ygdrasil-io/project-template")
+            }
+        }
+    }
+
+    if (isSnapshot) {
+        repositories {
+            maven {
+                name = "snapshots"
+                url = uri("https://central.sonatype.com/repository/maven-snapshots/")
+                credentials {
+                    username = project.findProperty("mavenCentralUsername") as? String ?: System.getenv("MAVEN_CENTRAL_USERNAME") ?: ""
+                    password = project.findProperty("mavenCentralPassword") as? String ?: System.getenv("MAVEN_CENTRAL_PASSWORD") ?: ""
+                }
             }
         }
     }
