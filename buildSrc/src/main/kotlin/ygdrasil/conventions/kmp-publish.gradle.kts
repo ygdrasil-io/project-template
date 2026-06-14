@@ -37,6 +37,19 @@ publishing {
             }
         }
     }
+
+    repositories {
+        maven {
+            name = "mavenCentral"
+            val releasesRepoUrl = uri("https://central.sonatype.com/service/local/staging/deploy/maven2/")
+            val snapshotsRepoUrl = uri("https://central.sonatype.com/repository/maven-snapshots/")
+            url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
+            credentials {
+                username = project.findProperty("mavenCentralUsername") as? String ?: System.getenv("MAVEN_CENTRAL_USERNAME") ?: ""
+                password = project.findProperty("mavenCentralPassword") as? String ?: System.getenv("MAVEN_CENTRAL_PASSWORD") ?: ""
+            }
+        }
+    }
 }
 
 signing {
