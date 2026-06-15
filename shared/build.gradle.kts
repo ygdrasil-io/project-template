@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugins.KotlinNativeCacheApi
+
 plugins {
     id("ygdrasil.conventions.kmp-library")
     id("ygdrasil.conventions.kmp-publish")
@@ -8,16 +10,12 @@ plugins {
 }
 
 kotlin {
-    iosSimulatorArm64 {
-        compilerOptions.freeCompilerArgs.add("-Xios-version-min=18.5")
-        binaries.framework {
-            baseName = "shared"
-        }
-    }
-    iosArm64 {
-        compilerOptions.freeCompilerArgs.add("-Xios-version-min=18.5")
-        binaries.framework {
-            baseName = "shared"
+    targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class).configureEach {
+        binaries.forEach {
+            if (it is org.jetbrains.kotlin.gradle.plugin.mpp.Framework) {
+                @OptIn(KotlinNativeCacheApi::class)
+                it.disableNativeCache = true
+            }
         }
     }
 
