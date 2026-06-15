@@ -15,14 +15,14 @@ kotlin {
 
     jvm()
 
-    iosArm64 {
+    iosArm64("iosArm64") {
         binaries.framework {
-            disableNativeCache = true
+            baseName = "shared"
         }
     }
-    iosSimulatorArm64 {
+    iosSimulatorArm64("iosSimulatorArm64") {
         binaries.framework {
-            disableNativeCache = true
+            baseName = "shared"
         }
     }
 }
