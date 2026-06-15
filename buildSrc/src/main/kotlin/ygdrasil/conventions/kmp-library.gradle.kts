@@ -15,8 +15,16 @@ kotlin {
 
     jvm()
 
-    iosArm64()
-    iosSimulatorArm64()
+    iosArm64 {
+        binaries.framework {
+            disableNativeCache = true
+        }
+    }
+    iosSimulatorArm64 {
+        binaries.framework {
+            disableNativeCache = true
+        }
+    }
 }
 
 extensions.configure<KotlinMultiplatformAndroidComponentsExtension> {
