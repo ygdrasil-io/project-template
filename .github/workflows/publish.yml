@@ -11,8 +11,8 @@ on:
         required: false
 
 jobs:
-  snapshot-on-push:
-    if: github.event_name == 'push' && github.ref_name == 'master'
+  snapshot:
+    if: github.event_name == 'push' && github.ref_name == 'master' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,17 +23,20 @@ jobs:
           cache: 'gradle'
       - name: Grant execute permission
         run: chmod +x gradlew
+      - name: Set version override
+        if: github.event_name == 'workflow_dispatch'
+        run: echo "VERSION=${{ github.event.inputs.version }}" >> $GITHUB_ENV
       - name: Publish snapshot
-        run: ./gradlew :shared:publishAllPublicationsToSnapshotsRepository --no-daemon --stacktrace
+        run: ./gradlew :shared:publishToMavenCentral --no-configuration-cache --no-daemon --stacktrace -PreleaseVersion=${{ env.VERSION }}
         env:
-          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
-          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
-          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
-          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
 
-  release-on-tag:
+  release:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -46,37 +49,9 @@ jobs:
       - name: Extract version from tag
         run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
       - name: Publish release
-        run: ./gradlew :shared:publishToMavenCentral closeAndReleaseMavenCentralStagingRepository --no-daemon --stacktrace -PreleaseVersion=${{ env.VERSION }}
+        run: ./gradlew :shared:publishAndReleaseToMavenCentral --no-configuration-cache --no-daemon --stacktrace -PreleaseVersion=${{ env.VERSION }}
         env:
-          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
-          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
-          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
-          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
-
-  snapshot-manual:
-    if: github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: '25'
-          cache: 'gradle'
-      - name: Grant execute permission
-        run: chmod +x gradlew
-      - name: Set version override
-        id: version
-        env:
-          INPUT_VERSION: ${{ github.event.inputs.version }}
-        run: |
-          if [[ -n "$INPUT_VERSION" ]]; then
-            echo "args=-PreleaseVersion=${INPUT_VERSION}" >> $GITHUB_OUTPUT
-          fi
-      - name: Publish snapshot
-        run: ./gradlew :shared:publishAllPublicationsToSnapshotsRepository --no-daemon --stacktrace ${{ steps.version.outputs.args }}
-        env:
-          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
-          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
-          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
-          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
