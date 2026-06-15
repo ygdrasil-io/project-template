@@ -2,7 +2,6 @@
 package ygdrasil.conventions
 
 import com.android.build.api.variant.KotlinMultiplatformAndroidComponentsExtension
-import org.jetbrains.kotlin.gradle.plugins.KotlinNativeCacheApi
 
 plugins {
     id("org.jetbrains.kotlin.multiplatform")
@@ -18,14 +17,12 @@ kotlin {
 
     iosArm64 {
         binaries.framework {
-            @OptIn(KotlinNativeCacheApi::class)
-            setDisableNativeCache(true)
+            disableNativeCache = true
         }
     }
     iosSimulatorArm64 {
         binaries.framework {
-            @OptIn(KotlinNativeCacheApi::class)
-            setDisableNativeCache(true)
+            disableNativeCache = true
         }
     }
 }
