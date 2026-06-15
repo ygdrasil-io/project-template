@@ -49,4 +49,4 @@ jobs:
       # Se lance uniquement pour les merges/PRs vers master
       - name: Run Deep Tests (JVM, Android)
         if: steps.test-strategy.outputs.strategy == 'deep'
-        run: ./gradlew :shared:build :shared:jvmTest --no-daemon --stacktrace -x :shared:linkDebugTestIosSimulatorArm64 -x :shared:linkReleaseTestIosSimulatorArm64
+        run: ./gradlew :shared:build :shared:jvmTest --no-daemon --stacktrace -x :shared:linkDebugTestIosSimulatorArm64
