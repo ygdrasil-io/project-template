@@ -13,3 +13,9 @@ dependencies {
     implementation("org.jetbrains.dokka:dokka-gradle-plugin:${libs.versions.dokka.get()}")
     implementation("com.vanniktech:gradle-maven-publish-plugin:${libs.versions.maven.publish.get()}")
 }
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xopt-in=org.jetbrains.kotlin.gradle.plugins.KotlinNativeCacheApi")
+    }
+}
