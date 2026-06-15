@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.plugins.KotlinNativeCacheApi
-
 plugins {
     id("ygdrasil.conventions.kmp-library")
     id("ygdrasil.conventions.kmp-publish")
@@ -10,15 +8,6 @@ plugins {
 }
 
 kotlin {
-    targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class).configureEach {
-        binaries.forEach {
-            if (it is org.jetbrains.kotlin.gradle.plugin.mpp.Framework) {
-                @OptIn(KotlinNativeCacheApi::class)
-                it.disableNativeCache = true
-            }
-        }
-    }
-
     sourceSets {
         commonMain.dependencies {
             implementation(compose.runtime)
