@@ -1,5 +1,4 @@
 @file:Suppress("UnstableApiUsage")
-@file:OptIn("org.jetbrains.kotlin.gradle.plugins.KotlinNativeCacheApi")
 package ygdrasil.conventions
 
 import com.android.build.api.variant.KotlinMultiplatformAndroidComponentsExtension
