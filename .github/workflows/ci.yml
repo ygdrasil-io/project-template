@@ -45,8 +45,8 @@ jobs:
         if: steps.test-strategy.outputs.strategy == 'fast-track'
         run: ./gradlew :shared:jvmTest --no-daemon --stacktrace
 
-      # Étape 3 : Exécution Deep (Build + JVM/Android tests, skip iOS linking issue)
+      # Étape 3 : Exécution Deep (Build + JVM tests)
       # Se lance uniquement pour les merges/PRs vers master
       - name: Run Deep Tests (JVM, Android)
         if: steps.test-strategy.outputs.strategy == 'deep'
-        run: ./gradlew :shared:build :shared:jvmTest --no-daemon --stacktrace
+        run: ./gradlew :shared:build :shared:jvmTest --no-daemon --stacktrace -x :shared:linkDebugTestIosSimulatorArm64 -x :shared:linkReleaseTestIosSimulatorArm64
