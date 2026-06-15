@@ -19,10 +19,18 @@ kotlin {
         binaries.framework {
             baseName = "shared"
         }
+        // Set iOS deployment target to match available SDK
+        compilations.configureEach {
+            compilerOptions.freeCompilerArgs.add("-Xios-version-min=15.0")
+        }
     }
     iosSimulatorArm64("iosSimulatorArm64") {
         binaries.framework {
             baseName = "shared"
+        }
+        // Set iOS deployment target to match available SDK
+        compilations.configureEach {
+            compilerOptions.freeCompilerArgs.add("-Xios-version-min=15.0")
         }
     }
 }
