@@ -7,15 +7,15 @@ plugins {
 }
 
 dependencies {
-    add("dokkaGfmPlugin", "org.jetbrains.dokka:gfm-plugin:2.2.0")
+    dokkaPlugin("org.jetbrains.dokka:gfm-plugin:2.2.0")
 }
 
-tasks.dokkaGfm {
+dokka {
     moduleName.set("shared")
-    dokkaSourceSets.named("commonMain") {
+    dokkaSourceSets.configureEach {
         sourceLink {
             localDirectory.set(project.file("src/commonMain/kotlin"))
-            remoteUrl.set(URI("https://github.com/ygdrasil-io/project-template/blob/master/shared/src/commonMain/kotlin").toURL())
+            remoteUrl.set(URI("https://github.com/ygdrasil-io/project-template/blob/master/shared/src/commonMain/kotlin"))
             remoteLineSuffix.set("#L")
         }
     }
