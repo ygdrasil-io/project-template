@@ -7,7 +7,7 @@ plugins {
 }
 
 dependencies {
-    dokkaPlugin("org.jetbrains.dokka:gfm-plugin:2.3.0")
+    dokkaPlugin("org.jetbrains.dokka:gfm-plugin:2.2.0")
 }
 
 dokka {
