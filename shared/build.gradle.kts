@@ -8,6 +8,19 @@ plugins {
 }
 
 kotlin {
+    iosSimulatorArm64 {
+        compilerOptions.freeCompilerArgs.add("-Xios-version-min=18.5")
+        binaries.framework {
+            baseName = "shared"
+        }
+    }
+    iosArm64 {
+        compilerOptions.freeCompilerArgs.add("-Xios-version-min=18.5")
+        binaries.framework {
+            baseName = "shared"
+        }
+    }
+
     sourceSets {
         commonMain.dependencies {
             implementation(compose.runtime)
