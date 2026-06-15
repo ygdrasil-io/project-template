@@ -1,7 +1,5 @@
 package ygdrasil.conventions
 
-import com.vanniktech.maven.publish.SonatypeHost
-
 plugins {
     id("com.vanniktech.maven.publish")
 }
@@ -9,9 +7,14 @@ plugins {
 group = "io.ygdrasil.shared"
 version = project.findProperty("releaseVersion") as? String ?: "1.0.0-SNAPSHOT"
 
+val isPublishing = project.findProperty("signingInMemoryKey")?.toString()?.isNotBlank() == true
+    || project.findProperty("signing.keyId")?.toString()?.isNotBlank() == true
+
 mavenPublishing {
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-    signAllPublications()
+    if (isPublishing) {
+        publishToMavenCentral()
+        signAllPublications()
+    }
     coordinates(group.toString(), "shared", version.toString())
 
     pom {
