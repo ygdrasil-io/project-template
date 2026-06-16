@@ -5,11 +5,20 @@
 [![AGP](https://img.shields.io/badge/AGP-9.0.0-green?logo=android)](https://developer.android.com/studio/releases/gradle-plugin)
 [![Java](https://img.shields.io/badge/Java-25-red?logo=openjdk)](https://openjdk.org)
 [![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-blue?logo=github-actions)](https://github.com/features/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Contributing](https://img.shields.io/badge/Contributing-guide-purple)](CONTRIBUTING.md)
 [![Projet: Planning](https://img.shields.io/badge/Statut-Planning-blue)](https://github.com)
 [![Projet: Incubating](https://img.shields.io/badge/Statut-Incubating-orange)](https://github.com)
 [![Projet: Stable](https://img.shields.io/badge/Statut-Stable-green)](https://github.com)
 [![Projet: Deprecated](https://img.shields.io/badge/Statut-Deprecated-red)](https://github.com)
 [![Projet: Archived](https://img.shields.io/badge/Statut-Archived-lightgrey)](https://github.com)
+
+---
+
+This project is a **state-of-the-art Kotlin Multiplatform (KMP) Starter Pack** targeting **Android**, **iOS**, and **Desktop (JVM)**. It leverages the latest ecosystem technologies (Kotlin 2.3.21, Gradle 9.5.0, AGP 9.0, Java 25) and rigorously applies **Clean Architecture** and **Domain-Driven Design (DDD)** principles.
+
+---
+
 <!-- ==========================================
      BADGES DE STATUT DE PROJET PERSONNALISABLES
      Décommentez/copiez simplement le badge correspondant au statut actuel de votre projet.
@@ -30,9 +39,17 @@
 <!-- STATUT : ARCHIVÉ (ARCHIVED) -->
 <!-- [![Projet: Archived](https://img.shields.io/badge/Statut-Archived-lightgrey)](https://github.com) -->
 
----
+## 🤝 Contribuer / Contributing
 
-This project is a **state-of-the-art Kotlin Multiplatform (KMP) Starter Pack** targeting **Android**, **iOS**, and **Desktop (JVM)**. It leverages the latest ecosystem technologies (Kotlin 2.3.21, Gradle 9.5.0, AGP 9.0, Java 25) and rigorously applies **Clean Architecture** and **Domain-Driven Design (DDD)** principles.
+Les contributions sont les bienvenues ! Consultez :
+
+Contributions are welcome! See:
+
+- [Guide de contribution / Contributing Guide](CONTRIBUTING.md)
+- [Code de Conduite / Code of Conduct](CODE_OF_CONDUCT.md)
+- [Politique de Sécurité / Security Policy](SECURITY.md)
+- [Support / Assistance](SUPPORT.md)
+- [Changelog](CHANGELOG.md)
 
 ---
 
