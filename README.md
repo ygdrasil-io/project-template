@@ -45,11 +45,11 @@ Les contributions sont les bienvenues ! Consultez :
 
 Contributions are welcome! See:
 
-- [Guide de contribution / Contributing Guide](CONTRIBUTING.md)
-- [Code de Conduite / Code of Conduct](CODE_OF_CONDUCT.md)
-- [Politique de Sécurité / Security Policy](SECURITY.md)
-- [Support / Assistance](SUPPORT.md)
-- [Changelog](CHANGELOG.md)
+- [🇬🇧 Contributing Guide](CONTRIBUTING.md) / [🇫🇷 Guide de contribution](CONTRIBUTING.fr.md)
+- [🇬🇧 Code of Conduct](CODE_OF_CONDUCT.md) / [🇫🇷 Code de Conduite](CODE_OF_CONDUCT.fr.md)
+- [🇬🇧 Security Policy](SECURITY.md) / [🇫🇷 Politique de Sécurité](SECURITY.fr.md)
+- [🇬🇧 Support](SUPPORT.md) / [🇫🇷 Assistance](SUPPORT.fr.md)
+- [🇬🇧 Changelog](CHANGELOG.md) / [🇫🇷 Journal des modifications](CHANGELOG.fr.md)
 
 ---
 
